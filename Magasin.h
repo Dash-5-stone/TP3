@@ -1,0 +1,48 @@
+#ifndef MAGASIN_H
+#define MAGASIN_H
+#include "Produit.h"
+#include "Client.h"
+#include "Commande.h"
+#include <vector>
+#include <string>
+#include <iostream>
+class Magasin
+{
+private:
+   std::vector<Produit> produits_;
+std::vector<Client> clients_;
+std::vector<Commande> commandes_;
+public:
+    Magasin(/* args */);
+    Magasin();
+    void ajouterProduit(Produit produit);
+std::vector<Commande> getCommande();
+std::vector<Client> getClient();
+std::vector<Produit> getProduit();
+void setProduit(std::vector<Produit> produits);
+void setCommande(std::vector<Commande> Commande);
+void setClient(std::vector<Client> client);
+void afficherProduits();
+void afficherProduitParNom(std::string nom);
+void mettreJourQuantite(std::string nom,int quantite);
+
+
+};
+
+Magasin::Magasin(/* args */)
+{
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif

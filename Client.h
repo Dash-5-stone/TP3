@@ -20,7 +20,8 @@ public:
     void setIdentifiant(std::string identifiant);
     std::string getPrenom()const ;
     std::string getNom() const;
-std::vector<Produit> getPanier() const;
+std::vector<Produit>& getPanier() const;
+std::vector<Produit>& getPanier();
 void setPrenom(std::string prenom);
 void setNom(std::string nom);
 void setPanier(std::vector<Produit> panier);
@@ -29,9 +30,8 @@ void validerCommande();
 
 void supprimerProduit(Client& client, const Produit& produit);
 
-
-
-
+void Client::modifierQuantitePanier(std::string titre, int quantite);
+friend std::ostream& operator<<(std::ostream& os, Client& client);
 };
 
 

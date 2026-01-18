@@ -5,13 +5,13 @@
 
 Produit::Produit(std::string titre,std::string description, int quantite, double prixUnitaire, bool disponible):titre_(titre),description_(description),quantite_(quantite),prixUnitaire_(prixUnitaire),disponible_(disponible){};
 
-std::string Produit::getTitre(){
+std::string Produit::getTitre() const{
     return titre_;
 }
 void Produit::setTitre(std::string titre){
     titre_=titre;
 }
-std::string Produit::getDescription(){
+std::string Produit::getDescription() const{
     return description_;
 }
 void Produit::setDescription(std::string description){
@@ -20,10 +20,10 @@ void Produit::setDescription(std::string description){
 void Produit::setQuantite(int quantite){
     quantite_=quantite;
 }
-int Produit::getQuantite(){
+int Produit::getQuantite() const{
     return quantite_;
 }
- bool Produit::getDisponible(){
+ bool Produit::getDisponible() const{
     return disponible_;
  }
   bool Produit::setDisponible(bool disponible){
@@ -35,5 +35,6 @@ std::ostream& operator<<(std::ostream& os, Produit& produit){
     << " Quantite : "<< produit.getQuantite() <<" Disponibilite : ";
     if(produit.getDisponible()){ os << " Disponible ";}else{os << " Non disponible ";}
 
-    
+
 }
+

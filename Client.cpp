@@ -19,7 +19,10 @@ std::string Client::getPrenom() const{
 std::string Client::getNom() const{
     return nom_;
 }
-std::vector<Produit> Client::getPanier() const{
+// std::vector<Produit>& Client::getPanier() const{
+//     return panier_;
+// }
+std::vector<Produit>& Client::getPanier() {
     return panier_;
 }
 void Client::setPrenom(std::string prenom){
@@ -46,4 +49,29 @@ void Client::supprimerProduit(Client& client, const Produit& produit) {
     );
 }
 
+void Client::viderPanier(std::vector<Produit>& panier){
+panier.clear();
+std::cout << "Panier vider avec succes !" << std::endl;
+}
     
+void Client::modifierQuantitePanier(std::string titre, int quantite){
+for (size_t i = 0; i < panier_.size(); i++)
+{
+   if(panier_[i].getTitre()==titre){
+    panier_[i].setQuantite(quantite);
+   }else{
+    std::cout << "Aucun panier n'a ce titre" << std::endl;
+   }
+}
+
+}
+
+
+
+std::ostream& operator<<(std::ostream& os, Client& client){
+    os<< "Identifiant : " << client.getIdentifiant()<< " Prenom : "<< client.getPrenom()<< " Nom : "<< client.getNom()<< " Panier : " ;
+    for(Produit& p:client.panier_){
+        std::cout << p << std::endl;
+    }
+     
+}

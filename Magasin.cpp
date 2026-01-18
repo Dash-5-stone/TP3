@@ -1,8 +1,9 @@
 #include <iostream>
 #include "Magasin.h"
+#include "Client.h"
 #include <string>
 #include "Produit.h"
-
+#include <algorithm>
 Magasin::Magasin(){
 
 }
@@ -49,5 +50,36 @@ void Magasin::mettreJourQuantite(std::string nom,int quantite){
             p.setQuantite(quantite);
         }
     }
+}
+void Magasin::ajouterClient(Client client){
+ clients_.push_back(client);
+}
+
+void Magasin::afficherClientMagasin(){
+for(Client& c:clients_){
+    std::cout << c << std::endl;
+} 
+}
+
+void Magasin::afficherClientMagasin(std::string nom){
+    for(Client& c:clients_){
+        if(c.getNom()==nom){
+            std::cout << c <<std::endl;
+        }
+    }
+}
+
+void Magasin::ajouterProduitPanier(Produit& produit, Client& client){
+        client.getPanier().push_back(produit);
+
+}
+
+void Magasin::supprimerProduitPanier(Produit& produit, Client& client){
+for(size_t i=0 ; i<client.getPanier().size();i++){
+if(client.getPanier()[i].getTitre()==produit.getTitre()){
+   client.getPanier().erase(client.getPanier().begin() + i);
+   return;
+}
+}
 }
 

@@ -18,7 +18,7 @@ public:
     std::string getDescription() const;
     void setDescription(std::string description);
     int getQuantite() const;
-    void setQuantite(int quantite) const;
+    void setQuantite(int quantite);
     bool getDisponible() const;
     bool setDisponible(bool disponible);
 

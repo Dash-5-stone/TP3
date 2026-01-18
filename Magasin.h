@@ -13,7 +13,7 @@ private:
 std::vector<Client> clients_;
 std::vector<Commande> commandes_;
 public:
-    Magasin(/* args */);
+  
     Magasin();
     void ajouterProduit(Produit produit);
 std::vector<Commande> getCommande();
@@ -25,7 +25,13 @@ void setClient(std::vector<Client> client);
 void afficherProduits();
 void afficherProduitParNom(std::string nom);
 void mettreJourQuantite(std::string nom,int quantite);
+void ajouterClient(Client client);
+void afficherClientMagasin();
 
+void afficherClientMagasin(std::string nom);
+void ajouterProduitPanier(Produit& produit);
+void ajouterProduitPanier(Produit& produit, Client& client);
+void supprimerProduitPanier(Produit& produit, Client& client);
 
 };
 

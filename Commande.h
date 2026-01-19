@@ -14,11 +14,14 @@ private:
 public:
     Commande(Client client, std::vector<Produit> produitCommander, bool statutCommande);
     Client getClient();
-    std::vector<Produit> getProduitCommander();
+    std::vector<Produit> getProduitCommander() const;
+     std::vector<Produit> getProduitCommander();
     bool getStatutCommande();
     void setClient(Client client);
     void setStatutCommande(bool statutCommande);
     void setProduitCommander(std::vector<Produit> poduitCommander);
+    friend std::ostream& operator<<(std::ostream& os, Commande& commande);
+
 };
 
 

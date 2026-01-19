@@ -3,6 +3,7 @@
 #include "Client.h"
 #include <string>
 #include "Produit.h"
+#include "Commande.h"
 #include <algorithm>
 Magasin::Magasin(){
 
@@ -83,3 +84,46 @@ if(client.getPanier()[i].getTitre()==produit.getTitre()){
 }
 }
 
+void Magasin::modifierQuantitePanier(int& quantite, Produit& produit, Client& client){
+    for (size_t i = 0; i < client.getPanier().size(); i++)
+    {
+        if(client.getPanier()[i].getTitre()==produit.getTitre()){
+            client.getPanier()[i].setQuantite(quantite);
+            return;
+        }
+    }
+    
+}
+
+void Magasin::validerCommande(Client& client){
+for (size_t i = 0; i < client.getPanier().size(); i++)
+{
+    if (client.getPanier()[i].getDisponible() && client.getPanier()[i].getTitre()== produits_[i].getTitre() && client.getPanier()[i].getQuantite()<=produits_[i].getQuantite())
+    {
+        std::cout << "Commande valider";
+    }else{
+        std::cout << "Commande invalide";
+    }
+    
+}
+
+}
+void Magasin::mettreJourStatut(Commande& commande, bool statut){
+commande.setStatutCommande(statut);
+    
+}
+void Magasin::afficherCommandePasser(Commande& commande){
+    for(size_t i=0; i<commande.getProduitCommander().size();i++){
+        std::cout << commande.getProduitCommander()[i];
+    }
+}
+
+void Magasin::afficherCommande(Commande& commande, Client& client){
+   for(size_t i=0; i<commande.getProduitCommander().size();i++){
+    if (commande.getProduitCommander()[i].getTitre()==client.getPanier()[i].getTitre())
+    {
+        std::cout << commande.getProduitCommander()[i];
+    }
+        
+    }
+}

@@ -32,12 +32,19 @@ void afficherClientMagasin(std::string nom);
 void ajouterProduitPanier(Produit& produit);
 void ajouterProduitPanier(Produit& produit, Client& client);
 void supprimerProduitPanier(Produit& produit, Client& client);
+void modifierQuantitePanier(int& quantite, Produit& produit, Client& client);
+void validerCommande(Client& client);
+
+void mettreJourStatut(Commande& commande, bool statut);
+
+void afficherCommandePasser(Commande& commande);
+void afficherCommande(Commande& commande, Client& client);
+
+
 
 };
 
-Magasin::Magasin(/* args */)
-{
-}
+
 
 
 

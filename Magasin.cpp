@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include "Magasin.h"
 #include "Client.h"
 #include <string>
@@ -125,5 +127,60 @@ void Magasin::afficherCommande(Commande& commande, Client& client){
         std::cout << commande.getProduitCommander()[i];
     }
         
+    }
+}
+
+
+void Magasin::sauvegarderDonnees(std::string nomFichierProduits) {
+    std::ofstream fichier(nomFichierProduits); // "out file stream" pour écrire
+
+    if (fichier.is_open()) {
+           for (size_t i = 0; i < panier_.size(); i++) {
+            fichier << panier_[i].getTitre() << ";"
+                    << panier_[i].getDescription() << ";"
+                    << panier_[i].getQuantite() << ";"
+                    << panier_[i].getPrix() << "\n";
+        }
+        fichier.close();
+        std::cout << "Sauvegarde reussie !" << std::endl;
+    } else {
+        std::cerr << "Erreur d'ouverture du fichier." << std::endl;
+    }
+}
+
+
+
+
+
+
+
+
+void Magasin::chargerProduits(std::string nomFichier) {
+    std::ifstream fichier(nomFichier); // "in file stream" pour lire
+    std::string ligne;
+
+    if (fichier.is_open()) {
+        panier_.clear(); // On vide le magasin avant de charger
+
+        while (std::getline(fichier, ligne)) {
+            // On utilise un flux de chaîne pour découper la ligne
+            std::stringstream ss(ligne);
+            std::string titre, desc, tempQte, tempPrix;
+
+            // On extrait chaque morceau entre les point-virgules
+            std::getline(ss, titre, ';');
+            std::getline(ss, desc, ';');
+            std::getline(ss, tempQte, ';');
+            std::getline(ss, tempPrix, ';');
+
+            // On convertit les chaînes en nombres (std::stoi et std::stod)
+            int qte = std::stoi(tempQte);
+            double prix = std::stod(tempPrix);
+
+            // On recrée l'objet et on l'ajoute au magasin
+            Produit p(titre, desc, qte, prix);
+            panier_.push_back(p);
+        }
+        fichier.close();
     }
 }

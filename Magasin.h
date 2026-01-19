@@ -40,8 +40,8 @@ void mettreJourStatut(Commande& commande, bool statut);
 void afficherCommandePasser(Commande& commande);
 void afficherCommande(Commande& commande, Client& client);
 
-
-
+void sauvegarderDonnees(std::string nomFichierProduits);
+void chargerProduits(std::string nomFichier);
 };
 
 

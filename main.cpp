@@ -30,7 +30,8 @@ switch (choix) {
     std::cin >> prix;
     std::cout << "quantite : ";
     std::cin >> qte;
-
+  std::cout << "disponible : ";
+    std::cin >> ;
     Produit p(nom,description,qte,prix,dispo);
 
         }

@@ -23,12 +23,21 @@ void Produit::setQuantite(int quantite){
 int Produit::getQuantite() const{
     return quantite_;
 }
+double Produit::getPrix() const{
+return prixUnitaire_;
+}
+void Produit::setPrix(double prix){
+    prixUnitaire_=prix;
+}
  bool Produit::getDisponible() const{
     return disponible_;
  }
+
   bool Produit::setDisponible(bool disponible){
      disponible_=disponible;
  }
+ 
+      
 
 std::ostream& operator<<(std::ostream& os, Produit& produit){
     os<< " Titre : "<<produit.getTitre() << " Description : "<< produit.getDescription()

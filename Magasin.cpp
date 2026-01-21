@@ -130,16 +130,31 @@ void Magasin::afficherCommande(Commande& commande, Client& client){
     }
 }
 
+void Magasin::sauvegarderDonnees(std::string fichierProduits){
+    std::ofstream fichier(fichierProduits);
+    if(fichier.is_open()){
+        for (size_t i = 0; i < produits_.size(); i++)
+        {
+            fichier << produits_[i].getTitre() <<";"
+            << produits_[i].getDescription() << ";"
+            << produits_[i].getQuantite() << ";"
+            << produits_[i].getQuantite()<<";"
+            << produits_[i].getPrix() << ";" ;
+        }
+        
+    }
+}
+
 
 void Magasin::sauvegarderDonnees(std::string nomFichierProduits) {
-    std::ofstream fichier(nomFichierProduits); // "out file stream" pour écrire
+    std::ofstream fichier(nomFichierProduits);
 
     if (fichier.is_open()) {
-           for (size_t i = 0; i < panier_.size(); i++) {
-            fichier << panier_[i].getTitre() << ";"
-                    << panier_[i].getDescription() << ";"
-                    << panier_[i].getQuantite() << ";"
-                    << panier_[i].getPrix() << "\n";
+           for (size_t i = 0; i < produits_.size(); i++) {
+            fichier << produits_[i].getTitre() << ";"
+                    << produits_[i].getDescription() << ";"
+                    << produits_[i].getQuantite() << ";"
+                    << produits_[i].getPrix() << "\n";
         }
         fichier.close();
         std::cout << "Sauvegarde reussie !" << std::endl;
@@ -160,7 +175,7 @@ void Magasin::chargerProduits(std::string nomFichier) {
     std::string ligne;
 
     if (fichier.is_open()) {
-        panier_.clear(); // On vide le magasin avant de charger
+        produits_.clear(); // On vide le magasin avant de charger
 
         while (std::getline(fichier, ligne)) {
             // On utilise un flux de chaîne pour découper la ligne
@@ -179,7 +194,8 @@ void Magasin::chargerProduits(std::string nomFichier) {
 
             // On recrée l'objet et on l'ajoute au magasin
             Produit p(titre, desc, qte, prix);
-            panier_.push_back(p);
+            produits_.push_back(p);
+
         }
         fichier.close();
     }

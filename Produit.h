@@ -16,12 +16,15 @@ public:
     std::string getTitre() const;
     void setTitre(std::string titre);
     std::string getDescription() const;
+    double getPrix() const;
+    void setPrix(double prix);
     void setDescription(std::string description);
     int getQuantite() const;
     void setQuantite(int quantite);
     bool getDisponible() const;
     bool setDisponible(bool disponible);
-
+    void modifierQuantite(std::string titre,int quantite);
+      
 friend std::ostream& operator<<(std::ostream& os , Produit& produit);
 
 
